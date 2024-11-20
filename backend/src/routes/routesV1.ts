@@ -3,6 +3,6 @@ import * as RideControler from "../controllers/ride-controller";
 
 const router = Router();
 
-router.get("/ride/estimate", RideControler.calculateRide);
+router.post("/ride/estimate", RideControler.calculateRide);
 
 export default router;
