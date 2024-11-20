@@ -6,9 +6,9 @@ export const calculateRideService = async (ride: RideModel) => {
   let response = null;
   if (Object.keys(ride).length !== 0) {
     const data = await RideRepository.calculateRide(ride);
-    response = await HttpResponse.ok(data);
+    response = await HttpResponse.badRequest(); //verificar
   } else {
-    response = await HttpResponse.noContent();
+    response = await HttpResponse.badRequest();
   }
   return response;
 };

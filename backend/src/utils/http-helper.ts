@@ -1,15 +1,26 @@
-import { HttpResponse } from "../models/http-response-model";
+import * as HttpResponse from "../models/http-response-model";
 
-export const ok = async (data: any): Promise<HttpResponse> => {
-  return {
-    statusCode: 200,
-    body: data,
-  };
-};
+// export const ok = async (data: any): Promise<HttpResponse.SuccessResponse> => {
+//   return {
+//     statusCode: 200,
+//     body: data,
+//   };
+// };
 
-export const noContent = async (): Promise<HttpResponse> => {
+// export const noContent = async (): Promise<HttpResponse> => {
+//   return {
+//     statusCode: 204,
+//     body: null,
+//   };
+// };
+
+export const badRequest = async (): Promise<HttpResponse.ErrorResponse> => {
   return {
-    statusCode: 204,
-    body: null,
+    statusCode: 400,
+    body: {
+      error_code: "INVALID_DATA",
+      error_description:
+        "Os dados fornecidos no corpo da requisição são inválidos",
+    },
   };
 };
