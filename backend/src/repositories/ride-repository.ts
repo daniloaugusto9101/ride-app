@@ -1,7 +1,4 @@
-interface RideModel {
-  id: number;
-  name: string;
-}
+import { RideModel } from "../models/ride-model";
 
 const database: RideModel[] = [
   { id: 1, name: "John Doe" },
