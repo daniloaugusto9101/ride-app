@@ -1,5 +1,5 @@
-export const calculateRideSerive = async () => {
+export const calculateRideService = async () => {
   return {
-    player: "Ronaldo adas",
+    player: "Ronaldo",
   };
 };
