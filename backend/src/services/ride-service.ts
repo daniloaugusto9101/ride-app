@@ -1,9 +1,8 @@
+import * as RideRepository from "../repositories/ride-repository";
 import * as HttpResponse from "../utils/http-helper";
 
 export const calculateRideService = async () => {
-  const data = {
-    player: "Danilo",
-  };
+  const data = await RideRepository.calculateRide();
 
   let response = null;
 
