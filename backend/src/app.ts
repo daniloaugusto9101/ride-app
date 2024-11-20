@@ -1,12 +1,12 @@
-import express, { Request, Response } from "express";
-import * as RideControler from "./controllers/ride-controller";
+import express from "express";
+import router from "./routes/routesV1";
 
 function createApp() {
   const app = express();
 
   app.use(express.json());
 
-  app.get("/", RideControler.calculateRide);
+  app.use("/", router);
 
   return app;
 }
