@@ -1,15 +1,12 @@
 import express, { Request, Response } from "express";
+import * as RideControler from "./controllers/ride-controller";
 
 function createApp() {
   const app = express();
 
   app.use(express.json());
 
-  app.get("/", (req: Request, res: Response) => {
-    res.status(200).json({
-      player: "Danilo",
-    });
-  });
+  app.get("/", RideControler.calculateRide);
 
   return app;
 }
