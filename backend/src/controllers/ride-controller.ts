@@ -10,8 +10,8 @@ export const calculateRide = async (req: Request, res: Response) => {
 };
 
 export const getRideById = async (req: Request, res: Response) => {
-  const customerId = parseInt(req.params.customer_id);
-  const driverId = String(req.query.driver_id);
+  const customerId = String(req.params.customer_id);
+  const driverId = req.query.driver_id ? Number(req.query.driver_id) : undefined;
   const httpResponse = await service.getRideByIdService(customerId, driverId);
   res.status(httpResponse.statusCode).json(httpResponse.body);
 };
