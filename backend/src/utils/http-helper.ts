@@ -1,11 +1,11 @@
 import * as HttpResponse from "../models/http-response-model";
 
-// export const ok = async (data: any): Promise<HttpResponse.SuccessResponse> => {
-//   return {
-//     statusCode: 200,
-//     body: data,
-//   };
-// };
+export const ok = async (data: any): Promise<HttpResponse.SuccessResponse> => {
+  return {
+    statusCode: 200,
+    body: data,
+  };
+};
 
 // export const noContent = async (): Promise<HttpResponse> => {
 //   return {

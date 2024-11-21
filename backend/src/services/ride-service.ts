@@ -12,3 +12,19 @@ export const calculateRideService = async (ride: RideModel) => {
   }
   return response;
 };
+
+export const getRideByIdService = async (
+  customerId: Number,
+  driverId: String
+) => {
+  const data = await RideRepository.findRideById(customerId, driverId);
+
+  let response = null;
+
+  if (data) {
+    response = await HttpResponse.ok(data);
+  } else {
+    response = await HttpResponse.badRequest();
+  }
+  return response;
+};
