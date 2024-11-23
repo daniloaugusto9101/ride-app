@@ -1,5 +1,4 @@
 import * as HttpResponse from "../models/http-response-model";
-import { NextFunction, Request, Response } from "express";
 
 export const ok = async (data: any): Promise<HttpResponse.SuccessResponse> => {
   return {
@@ -12,6 +11,18 @@ export const ok = async (data: any): Promise<HttpResponse.SuccessResponse> => {
 //   return {
 //     statusCode: 204,
 //     body: null,
+//   };
+// };
+
+// export const Erro404 = async (errorCode: string, errorDescription: string): Promise<HttpResponse.CustomErro> => {
+//   return {
+//     name: "Erro404",
+//     message: "Ocorreu um erro",
+//     statusCode: 404,
+//     body: {
+//       error_code: errorCode,
+//       error_description: errorDescription,
+//     },
 //   };
 // };
 
@@ -33,13 +44,4 @@ export const BadRequest = async (errorCode: string, errorDescription: string): P
 //       error_description: errorDescription,
 //     },
 //   };
-// };
-
-// export const InternalServerErro = (error: Error, req: Request, res: Response, next: NextFunction) => {
-//   return res.json({
-//     error: {
-//       title: "INTERNAL_SERVER_ERROR",
-//       error_description: error.message,
-//     },
-//   });
 // };

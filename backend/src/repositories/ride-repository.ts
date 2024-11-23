@@ -1,4 +1,4 @@
-import { DriveModel, RideBasicResponseModel, RideModel, RideModelHistory, RideResponseModel } from "../models/ride-model";
+import { DriveModel, RideBasicResponseModel, RideConfirmModel, RideConfirmResposeModel, RideModel, RideModelHistory, RideResponseModel } from "../models/ride-model";
 
 // const database: RideModel[] = [
 //   {
@@ -161,6 +161,14 @@ export const rideEstimate = async (ride: RideModel): Promise<RideResponseModel> 
     ...dataRideBasicResponse,
     options: drivers,
   };
+};
+
+export const rideConfirm = async (ride: RideConfirmModel): Promise<RideConfirmResposeModel> => {
+  if (true) {
+    return {
+      success: true,
+    };
+  }
 };
 
 export const findRideById = async (customerId: String, driverId: number | undefined): Promise<RideModelHistory | undefined> => {

@@ -8,7 +8,14 @@ export const rideEstimate = async (req: Request, res: Response) => {
     res.status(httpResponse.statusCode).json(httpResponse.body);
   }
 };
-
+export const rideConfirm = async (req: Request, res: Response) => {
+  const bodyValue = req.body;
+  const httpResponse = await service.rideConfirmService(bodyValue);
+  console.log(httpResponse);
+  if (httpResponse) {
+    res.status(httpResponse.statusCode).json(httpResponse.body);
+  }
+};
 export const getRideById = async (req: Request, res: Response) => {
   const customerId = String(req.params.customer_id);
   const driverId = req.query.driver_id ? Number(req.query.driver_id) : undefined;

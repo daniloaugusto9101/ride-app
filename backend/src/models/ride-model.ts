@@ -19,7 +19,6 @@ export interface RideBasicResponseModel {
   duration: string;
   routeResponse: object; // O tipo pode ser ajustado se soubermos a estrutura do objeto
 }
-
 export interface DriveModel {
   id: number;
   name: string;
@@ -32,7 +31,6 @@ export interface DriveModel {
   value: number;
   rate_per_km: string;
 }
-
 export interface RideModelHistory {
   customer_id: string;
   rides: {
@@ -48,4 +46,19 @@ export interface RideModelHistory {
     };
     value: number;
   }[];
+}
+export interface RideConfirmModel {
+  customer_id: string;
+  origin: string;
+  destination: string;
+  distance: number;
+  duration: string;
+  driver: {
+    id: number;
+    name: string;
+  };
+  value: number;
+}
+export interface RideConfirmResposeModel {
+  success: boolean;
 }
