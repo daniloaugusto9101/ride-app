@@ -1,6 +1,7 @@
 export interface RideModel {
-  id: number;
-  name: string;
+  customer_id: string;
+  origin: string;
+  destination: string;
 }
 
 export interface RideModelHistory {

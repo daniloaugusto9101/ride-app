@@ -1,4 +1,4 @@
-import express from "express";
+import express, { NextFunction, Request, Response } from "express";
 import router from "./routes/routesV1";
 
 function createApp() {
@@ -7,6 +7,13 @@ function createApp() {
   app.use(express.json());
 
   app.use("/", router);
+
+  app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
+    res.status(500).json({
+      error_code: "INTERNAL_SERVER_ERROR",
+      error_description: error.message,
+    });
+  });
 
   return app;
 }

@@ -1,8 +1,21 @@
 import { RideModel, RideModelHistory } from "../models/ride-model";
 
 const database: RideModel[] = [
-  { id: 1, name: "John Doe" },
-  { id: 2, name: "Smith Doe2" },
+  {
+    customer_id: "1",
+    origin: "SJC",
+    destination: "SP",
+  },
+  {
+    customer_id: "1",
+    origin: "Jacarei",
+    destination: "SP",
+  },
+  {
+    customer_id: "1",
+    origin: "Caçapava",
+    destination: "SP",
+  },
 ];
 
 const databaseHistory: RideModelHistory = {
@@ -37,7 +50,7 @@ const databaseHistory: RideModelHistory = {
   ],
 };
 
-export const calculateRide = async (ride: RideModel): Promise<RideModel[]> => {
+export const rideEstimate = async (ride: RideModel): Promise<RideModel[]> => {
   return database;
 };
 
