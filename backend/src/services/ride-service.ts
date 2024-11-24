@@ -15,6 +15,7 @@ export const rideEstimateService = async (ride: RideModel) => {
     return await HttpResponse.BadRequest("INVALID_DATA", "Os dados fornecidos no corpo da requisição são inválidos");
   }
 };
+
 export const rideConfirmService = async (ride: RideConfirmModel) => {
   try {
     if (Object.keys(ride).length === 0) throw new Error();
@@ -24,22 +25,19 @@ export const rideConfirmService = async (ride: RideConfirmModel) => {
     if (ride?.origin.trim().toLowerCase() === ride.destination.trim().toLowerCase()) throw new Error();
     // opção de validação de motorista
     // km validar
-    const data = await RideRepository.rideEstimate(ride);
+    const data = await RideRepository.rideConfirm(ride);
     return await HttpResponse.ok(data);
   } catch (error) {
     return await HttpResponse.BadRequest("INVALID_DATA", "Os dados fornecidos no corpo da requisição são inválidos");
   }
 };
 
-export const getRideByIdService = async (customerId: String, driverId: number | undefined) => {
-  const data = await RideRepository.findRideById(customerId, driverId);
-
-  let response = null;
-
-  if (data) {
-    response = await HttpResponse.ok(data);
-  } else {
-    response = await HttpResponse.BadRequest("RIDE_NOT_FOUND", "Ride not found for the given IDs");
+export const rideCustomerIdService = async (customerId: String, driverId: number | undefined) => {
+  try {
+    if (!customerId || customerId.trim() === "") throw new Error();
+    const data = await RideRepository.rideCustomerId(customerId, driverId);
+    return await HttpResponse.ok(data);
+  } catch (error) {
+    return await HttpResponse.BadRequest("RIDE_NOT_FOUND", "Ride not found for the given IDs");
   }
-  return response;
 };

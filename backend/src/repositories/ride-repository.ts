@@ -1,84 +1,59 @@
-import { DriveModel, RideBasicResponseModel, RideConfirmModel, RideConfirmResposeModel, RideModel, RideModelHistory, RideResponseModel } from "../models/ride-model";
+import { DriveModel, RideBasicResponseModel, RideConfirmModel, RideConfirmResposeModel, RideModel, RideResponseModel, TripsModel } from "../models/ride-model";
 
-// const database: RideModel[] = [
-//   {
-//     customer_id: "1",
-//     origin: "SJC",
-//     destination: "SP",
-//   },
-//   {
-//     customer_id: "1",
-//     origin: "Jacarei",
-//     destination: "SP",
-//   },
-//   {
-//     customer_id: "1",
-//     origin: "Caçapava",
-//     destination: "SP",
-//   },
-// ];
-
-// const driver: DriverModel[] = [
-//   {
-//     id: "1",
-//     nome: "Homer Simpson",
-//     descricao: "Olá! Sou o Homer, seu motorista camarada! Relaxe e aproveite o passeio, com direito a rosquinhas e boas risadas (e talvez alguns desvios).",
-//     carro: "Plymouth Valiant 1973 rosa e enferrujado",
-//     avaliacao: "2/5",
-//     comentarios: "Motorista simpático, mas errou o caminho 3 vezes. O carro cheira a donuts.",
-//     taxaKm: "R$ 2,50/km",
-//     kmMinimo: 1,
-//   },
-//   {
-//     id: "2",
-//     nome: "Dominic Toretto",
-//     descricao: "Ei, aqui é o Dom. Pode entrar, vou te levar com segurança e rapidez ao seu destino. Só não mexa no rádio, a playlist é sagrada.",
-//     carro: "Dodge Charger R/T 1970 modificado",
-//     avaliacao: "4/5",
-//     comentarios: "Que viagem incrível! O carro é um show à parte e o motorista, apesar de ter uma cara de poucos amigos, foi super gente boa. Recomendo!",
-//     taxaKm: "R$ 5,00/km",
-//     kmMinimo: 5,
-//   },
-//   {
-//     id: "3",
-//     nome: "James Bond",
-//     descricao: "Boa noite, sou James Bond. À seu dispor para um passeio suave e discreto. Aperte o cinto e aproveite a viagem.",
-//     carro: "Aston Martin DB5 clássico",
-//     avaliacao: "5/5",
-//     comentarios: "Serviço impecável! O motorista é a própria definição de classe e o carro é simplesmente magnífico. Uma experiência digna de um agente secreto.",
-//     taxaKm: "R$ 10,00/km",
-//     kmMinimo: 10,
-//   },
-// ];
-
-const databaseHistory: RideModelHistory = {
+const dataTrips: TripsModel = {
   customer_id: "12345",
   rides: [
     {
       id: 1,
-      date: new Date(),
-      origin: "Location A",
-      destination: "Location B",
-      distance: 10,
-      duration: "15 mins",
+      date: new Date("2024-11-23T10:00:00"),
+      origin: "Rua A, 123, São Paulo",
+      destination: "Avenida B, 456, São Paulo",
+      distance: 12.5,
+      duration: "00:30:45",
       driver: {
-        id: 1,
-        name: "Driver A",
+        id: 101,
+        name: "Carlos Silva",
       },
-      value: 20,
+      value: 45.75,
     },
     {
       id: 2,
-      date: new Date(),
-      origin: "Location C",
-      destination: "Location D",
-      distance: 20,
-      duration: "30 mins",
+      date: new Date("2024-11-23T12:15:00"),
+      origin: "Rua X, 789, São Paulo",
+      destination: "Rua Y, 101, São Paulo",
+      distance: 8.2,
+      duration: "00:20:15",
       driver: {
-        id: 2,
-        name: "Driver B",
+        id: 102,
+        name: "Ana Souza",
       },
-      value: 40,
+      value: 32.0,
+    },
+    {
+      id: 3,
+      date: new Date("2024-11-23T14:30:00"),
+      origin: "Avenida C, 456, São Paulo",
+      destination: "Rua D, 789, São Paulo",
+      distance: 5.7,
+      duration: "00:15:30",
+      driver: {
+        id: 103,
+        name: "José Pereira",
+      },
+      value: 22.5,
+    },
+    {
+      id: 4,
+      date: new Date("2024-11-23T17:45:00"),
+      origin: "Rua E, 101, São Paulo",
+      destination: "Avenida F, 202, São Paulo",
+      distance: 14.3,
+      duration: "00:35:00",
+      driver: {
+        id: 104,
+        name: "Maria Oliveira",
+      },
+      value: 53.2,
     },
   ],
 };
@@ -171,9 +146,6 @@ export const rideConfirm = async (ride: RideConfirmModel): Promise<RideConfirmRe
   }
 };
 
-export const findRideById = async (customerId: String, driverId: number | undefined): Promise<RideModelHistory | undefined> => {
-  if (databaseHistory.customer_id === customerId) {
-    return databaseHistory;
-  }
-  return undefined;
+export const rideCustomerId = async (customerId: String, driverId: number | undefined): Promise<TripsModel> => {
+  return dataTrips;
 };

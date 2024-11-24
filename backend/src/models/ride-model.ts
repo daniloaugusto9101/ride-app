@@ -31,7 +31,7 @@ export interface DriveModel {
   value: number;
   rate_per_km: string;
 }
-export interface RideModelHistory {
+export interface TripsModel {
   customer_id: string;
   rides: {
     id: number;
