@@ -24,7 +24,9 @@ const trips = [
 
 const Trips = () => {
   const data = useFetchTrips(555, 666);
-  console.info("Meus trips aqui =>>", data);
+  if (data?.rides) {
+    console.log(data.rides);
+  }
   return (
     <div className="p-4">
       <div className="mb-4">
@@ -43,7 +45,6 @@ const Trips = () => {
             <option value="all">All</option>
             <option value="John Doe">John Doe</option>
             <option value="Jane Smith">Jane Smith</option>
-            {/* Adicione mais opções conforme necessário */}
           </select>
         </label>
       </div>
@@ -51,13 +52,13 @@ const Trips = () => {
         Apply Filter
       </button>
 
-      {trips.map((trip, index) => (
-        <div key={index} className=" bg-white shadow-md rounded-lg p-4 mb-4">
+      {data?.rides.map((trip) => (
+        <div key={trip.id} className=" bg-white shadow-md rounded-lg p-4 mb-4">
           <p className="text-gray-700">
             <strong>Date and Time:</strong> {trip.date}
           </p>
           <p className="text-gray-700">
-            <strong>Driver:</strong> {trip.driver}
+            <strong>Driver:</strong> {trip.driver.name}
           </p>
           <p className="text-gray-700">
             <strong>Origin:</strong> {trip.origin}
@@ -69,8 +70,11 @@ const Trips = () => {
             <strong>Distance:</strong> {trip.distance}
           </p>
           <p className="text-gray-700">
-            <strong>Time:</strong> {trip.time}
+            <strong>Duration:</strong> {trip.duration}
           </p>
+          {/* <p className="text-gray-700">
+              <strong>Time:</strong> {trip.time}
+            </p> */}
           <p className="text-gray-700">
             <strong>Value:</strong> {trip.value}
           </p>
