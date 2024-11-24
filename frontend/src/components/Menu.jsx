@@ -11,7 +11,7 @@ const Menu = () => {
             <Link to="/">Ride</Link>
           </li>
           <li>
-            <Link to="/history">My trips</Link>
+            <Link to="/trips">My trips</Link>
           </li>
         </ul>
         <p>lorem</p>

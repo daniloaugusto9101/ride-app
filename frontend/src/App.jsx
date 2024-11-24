@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Home from "./pages/Home";
 import Layout from "./components/Layout";
-import History from "./pages/History";
+import Trips from "./pages/Trips";
 
 const App = () => {
   return (
@@ -12,7 +12,7 @@ const App = () => {
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/history" element={<History />} />
+          <Route path="/trips" element={<Trips />} />
         </Routes>
       </Layout>
     </Router>
