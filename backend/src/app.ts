@@ -1,8 +1,10 @@
 import express, { NextFunction, Request, Response } from "express";
 import router from "./routes/routesV1";
+import cors from "cors";
 
 function createApp() {
   const app = express();
+  app.use(cors());
 
   app.use(express.json());
 

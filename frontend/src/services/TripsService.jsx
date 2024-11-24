@@ -1,6 +1,6 @@
 import { api } from "../config/http";
 
-const getTrips = async (customerId, driverId) => {
+const searchTrips = async (customerId, driverId) => {
   const recurso = `ride/${customerId}`;
   const params = {
     driver_id: driverId,
@@ -10,5 +10,5 @@ const getTrips = async (customerId, driverId) => {
 };
 
 export default {
-  getTrips,
+  searchTrips,
 };
