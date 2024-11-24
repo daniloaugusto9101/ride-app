@@ -1,4 +1,5 @@
 import React from "react";
+import useFetchTrips from "../hooks/useFetchTrips";
 
 const trips = [
   {
@@ -21,7 +22,9 @@ const trips = [
   },
 ];
 
-const History = () => {
+const Trips = () => {
+  const data = useFetchTrips(555, 666);
+  console.info("Meus trips aqui =>>", data);
   return (
     <div className="p-4">
       <div className="mb-4">
@@ -77,4 +80,4 @@ const History = () => {
   );
 };
 
-export default History;
+export default Trips;

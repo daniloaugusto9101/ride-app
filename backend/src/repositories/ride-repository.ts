@@ -147,5 +147,7 @@ export const rideConfirm = async (ride: RideConfirmModel): Promise<RideConfirmRe
 };
 
 export const rideCustomerId = async (customerId: String, driverId: number | undefined): Promise<TripsModel> => {
+  console.log("Api backend customerId=>>", customerId);
+  console.log("Api backend driverId=>>", driverId);
   return dataTrips;
 };
