@@ -29,25 +29,20 @@ const Trips = () => {
               value={customerId}
               type="text"
               className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+              required
             />
           </label>
         </div>
         <div className="mb-4">
           <label className="block text-gray-700">
             Driver:
-            <select
+            <input
               onChange={(event) => {
                 setDriverId(event.target.value);
               }}
               value={driverId}
               className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-            >
-              <option value="">All</option>
-              <option value="1">1John Doe</option>
-              <option value="2">2Jane Smith</option>
-              <option value="3">3Jane Smith</option>
-              <option value="4">4Jane Smith</option>
-            </select>
+            ></input>
           </label>
         </div>
         <button type="submit" className="bg-blue-500 text-white p-2 rounded-md">
