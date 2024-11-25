@@ -12,7 +12,7 @@ function useSearchTrips(customerId, driverId) {
     TripsService.searchTrips(customerId, driverId).then((data) => {
       setSearchResults(data);
     });
-  }, [customerId]);
+  }, [customerId, driverId]);
 
   return searchResults;
 }

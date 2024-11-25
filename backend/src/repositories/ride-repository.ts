@@ -147,10 +147,11 @@ export const rideConfirm = async (ride: RideConfirmModel): Promise<RideConfirmRe
 };
 
 export const rideCustomerId = async (customerId: String, driverId: number | undefined): Promise<TripsModel | []> => {
-  // console.log("Api backend customerId=>>", customerId);
+  console.log("Api backend customerId=>>", customerId);
   console.log("Api backend driverId=>>", driverId);
   if (dataTrips.customer_id !== customerId) {
     console.log("extrou no if");
+    console.log(`dataTrips.customer_id: ${dataTrips.customer_id} !== customerId: ${customerId}`);
     return [];
   }
   let filteredRides = dataTrips.rides.filter((ride) => (driverId !== undefined ? ride.id == driverId : true));
