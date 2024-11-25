@@ -35,6 +35,7 @@ export const rideConfirmService = async (ride: RideConfirmModel) => {
 export const rideCustomerIdService = async (customerId: String, driverId: number | undefined) => {
   try {
     if (!customerId || customerId.trim() === "") throw new Error();
+    if (driverId !== undefined && (typeof driverId !== "number" || Number.isNaN(driverId))) throw new Error();
     const data = await RideRepository.rideCustomerId(customerId, driverId);
     return await HttpResponse.ok(data);
   } catch (error) {

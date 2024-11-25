@@ -146,8 +146,17 @@ export const rideConfirm = async (ride: RideConfirmModel): Promise<RideConfirmRe
   }
 };
 
-export const rideCustomerId = async (customerId: String, driverId: number | undefined): Promise<TripsModel> => {
-  console.log("Api backend customerId=>>", customerId);
+export const rideCustomerId = async (customerId: String, driverId: number | undefined): Promise<TripsModel | []> => {
+  // console.log("Api backend customerId=>>", customerId);
   console.log("Api backend driverId=>>", driverId);
-  return dataTrips;
+  if (dataTrips.customer_id !== customerId) {
+    console.log("extrou no if");
+    return [];
+  }
+  let filteredRides = dataTrips.rides.filter((ride) => (driverId !== undefined ? ride.id == driverId : true));
+  console.log("Api backend filteredRides=>>", filteredRides);
+  return {
+    customer_id: String(customerId),
+    rides: filteredRides,
+  };
 };
