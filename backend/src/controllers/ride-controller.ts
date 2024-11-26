@@ -11,7 +11,6 @@ export const rideEstimate = async (req: Request, res: Response) => {
 export const rideConfirm = async (req: Request, res: Response) => {
   const bodyValue = req.body;
   const httpResponse = await service.rideConfirmService(bodyValue);
-  console.log(httpResponse);
   if (httpResponse) {
     res.status(httpResponse.statusCode).json(httpResponse.body);
   }

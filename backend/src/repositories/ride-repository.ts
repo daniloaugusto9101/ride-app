@@ -128,7 +128,6 @@ const dataDriver: DriveModel[] = [
 ];
 
 export const rideEstimate = async (ride: RideModel): Promise<RideResponseModel> => {
-  console.log("rideEstimate =>>", ride.destination);
   const drivers = dataDriver.filter((driver) => driver.value >= Number(ride.destination));
   return {
     ...dataRideBasicResponse,
@@ -137,6 +136,7 @@ export const rideEstimate = async (ride: RideModel): Promise<RideResponseModel> 
 };
 
 export const rideConfirm = async (ride: RideConfirmModel): Promise<RideConfirmResposeModel> => {
+  console.log("Api backend rideConfirm=>>", ride);
   if (true) {
     return {
       success: true,

@@ -18,8 +18,26 @@ const searchRides = async (customerId, origin, destination) => {
   const { data } = await api.post(recurso, body);
   return data;
 };
+const searchRideConfirm = async (object) => {
+  const recurso = `ride/confirm`;
+  const body = {
+    customer_id: object.customer_id,
+    origin: object.origin,
+    destination: object.destination + "2",
+    distance: object.distance,
+    duration: object.duration,
+    driver: {
+      id: object.driver.id,
+      name: object.driver.name,
+    },
+    value: object.value,
+  };
+  const { data } = await api.patch(recurso, body);
+  return data;
+};
 
 export default {
   searchTrips,
   searchRides,
+  searchRideConfirm,
 };

@@ -3,7 +3,6 @@ import * as RideRepository from "../repositories/ride-repository";
 import * as HttpResponse from "../utils/http-helper";
 
 export const rideEstimateService = async (ride: RideModel) => {
-  console.log("controller estimate", ride);
   try {
     if (Object.keys(ride).length === 0) throw new Error();
     if (!ride?.customer_id || ride.customer_id.trim() === "") throw new Error();

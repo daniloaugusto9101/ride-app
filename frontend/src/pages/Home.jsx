@@ -3,18 +3,21 @@ import React from "react";
 import FormComponent from "../components/FormComponent";
 import Card from "../components/Card";
 import { APIProvider, Map } from "@vis.gl/react-google-maps";
-import useSearchRides from "../hooks/useSearchRIdes";
+import useSearchRides from "../hooks/useSearchRides";
+import useSearchRideConfirm from "../hooks/useSearchRideConfirm";
 
 const Home = () => {
   const [customerId, setCustomerId] = React.useState("");
   const [origin, setOrigin] = React.useState("");
   const [destination, setDestination] = React.useState("");
   const [isModal, setIsModal] = React.useState(false);
+  const [objRide, setObjRide] = React.useState("");
 
   const [searchCustomerId, setSearchCustomerId] = React.useState("");
   const [searOrigin, setSearOrigin] = React.useState("");
   const [searchDestination, setSearchDestination] = React.useState("");
   const data = useSearchRides(searchCustomerId, searOrigin, searchDestination);
+  const rideConfirm = useSearchRideConfirm(objRide);
 
   function handleOnSubmit(event) {
     event.preventDefault();
@@ -22,6 +25,22 @@ const Home = () => {
     setSearOrigin(origin);
     setSearchDestination(destination);
     setIsModal(true);
+  }
+
+  function handleClick(idDriver, nameDriver, priceDriver) {
+    const rideConfirm = {
+      customer_id: customerId,
+      origin: origin,
+      destination: origin,
+      distance: data.distance,
+      duration: data.duration,
+      driver: {
+        id: idDriver,
+        name: nameDriver,
+      },
+      value: priceDriver,
+    };
+    setObjRide(rideConfirm);
   }
   return (
     <section className="flex flex-col md:flex-row gap-y-2 overflow-hidden flex-grow">
@@ -70,9 +89,13 @@ const Home = () => {
       <div className="w-full md:w-3/4 flex flex-col md:flex-row p-4 ">
         <div className={`${isModal ? "block" : "hidden"} w-full md:w-1/2 md:flex-1 px-2 overflow-y-scroll`}>
           {data?.options?.map((ride) => {
+            const value = ride.value * data.distance;
+            const toFloat = parseFloat(value);
+            const price = toFloat.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+
             return (
               <div key={ride.id} className=" shadow-md rounded-lg flex mb-2">
-                <div className="w-1/4">
+                <div className="w-1/4 bg-gray-200">
                   <img src="https://picsum.photos/id/111/300" alt="Vehicle image" className="w-full h-full object-cover rounded-l-lg" />
                 </div>
                 <div className="w-3/4 p-2 flex flex-col justify-between">
@@ -89,8 +112,8 @@ const Home = () => {
                       <span className="ml-2 text-gray-600">({ride.review.rating})</span>
                     </div>
                     <div className="text-lg font-bold flex justify-between">
-                      <p>R$ 50,00</p>
-                      <button type="submit" className="bg-gray-800 hover:bg-gray-900 text-white px-4 py-2 rounded">
+                      <p>{price}</p>
+                      <button onClick={() => handleClick(ride.id, ride.name, value)} type="submit" className="bg-gray-800 hover:bg-gray-900 text-white px-4 py-2 rounded">
                         Confirm
                       </button>
                     </div>
@@ -101,11 +124,6 @@ const Home = () => {
           })}
         </div>
         <div className="w-full md:w-1/2 md:flex-1">
-          {/* <img
-            src="src/assets/maps.jpg"
-            alt="Maps image"
-            className="w-full h-full object-cover"
-          /> */}
           <APIProvider apiKey={"AIzaSyC4cYuZ4ACSgOR271JbUnH7uZ4PZezyyN4"}>
             <Map
               style={{}}
