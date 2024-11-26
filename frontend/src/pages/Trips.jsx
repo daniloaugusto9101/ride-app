@@ -1,15 +1,5 @@
 import React from "react";
-import {
-  FaIdBadge,
-  FaCalendarAlt,
-  FaUser,
-  FaMapMarkerAlt,
-  FaRoute,
-  FaClock,
-  FaDollarSign,
-  FaTruck,
-  FaSearch,
-} from "react-icons/fa";
+import { FaIdBadge, FaCalendarAlt, FaUser, FaMapMarkerAlt, FaRoute, FaClock, FaDollarSign, FaTruck, FaSearch } from "react-icons/fa";
 import useSearchTrips from "../hooks/useSearchTrips";
 
 const Trips = () => {
@@ -59,19 +49,13 @@ const Trips = () => {
             <FaUser />
           </div>
         </div>
-        <button
-          type="submit"
-          className="bg-gray-800 text-white px-4 rounded-md"
-        >
+        <button type="submit" className="bg-gray-800 text-white px-4 rounded-md">
           Search
         </button>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {data?.rides?.map((trip) => (
-          <div
-            key={trip.id}
-            className="bg-white shadow-lg rounded-t-md border border-gray-200 flex flex-col items-center"
-          >
+          <div key={trip.id} className="bg-white shadow-lg rounded-t-md border border-gray-200 flex flex-col items-center">
             {/* Imagem principal */}
             <div className="w-full h-40 bg-gray-200 rounded-t-lg">
               <img
@@ -84,9 +68,7 @@ const Trips = () => {
 
             {/* Detalhes do Card */}
             <div className="w-full text-center p-4">
-              <h3 className="text-lg font-bold text-gray-800 mb-2">
-                {trip.destination}
-              </h3>
+              <h3 className="text-lg font-bold text-gray-800 mb-2">{trip.destination}</h3>
               <p className="text-sm text-gray-500 mb-2">
                 <FaCalendarAlt className="inline-block mr-2" /> {trip.date}
               </p>

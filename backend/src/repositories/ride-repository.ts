@@ -128,6 +128,7 @@ const dataDriver: DriveModel[] = [
 ];
 
 export const rideEstimate = async (ride: RideModel): Promise<RideResponseModel> => {
+  console.log("rideEstimate backend ride=>>", ride);
   const googleResponse = {
     km: 5,
   };
@@ -147,15 +148,15 @@ export const rideConfirm = async (ride: RideConfirmModel): Promise<RideConfirmRe
 };
 
 export const rideCustomerId = async (customerId: String, driverId: number | undefined): Promise<TripsModel | []> => {
-  console.log("Api backend customerId=>>", customerId);
-  console.log("Api backend driverId=>>", driverId);
+  // console.log("Api backend customerId=>>", customerId);
+  // console.log("Api backend driverId=>>", driverId);
   if (dataTrips.customer_id !== customerId) {
-    console.log("extrou no if");
-    console.log(`dataTrips.customer_id: ${dataTrips.customer_id} !== customerId: ${customerId}`);
+    // console.log("extrou no if");
+    // console.log(`dataTrips.customer_id: ${dataTrips.customer_id} !== customerId: ${customerId}`);
     return [];
   }
   let filteredRides = dataTrips.rides.filter((ride) => (driverId !== undefined ? ride.id == driverId : true));
-  console.log("Api backend filteredRides=>>", filteredRides);
+  // console.log("Api backend filteredRides=>>", filteredRides);
   return {
     customer_id: String(customerId),
     rides: filteredRides,
