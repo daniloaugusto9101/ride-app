@@ -53,6 +53,7 @@ const Trips = () => {
           Search
         </button>
       </div>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {data?.rides?.map((trip) => (
           <div key={trip.id} className="bg-white shadow-lg rounded-t-md border border-gray-200 flex flex-col items-center">

@@ -5,7 +5,7 @@ import Menu from "./Menu";
 const Layout = ({ children }) => {
   return (
     <>
-      <main className="mx-auto px-2 py-2 flex flex-col h-screen">
+      <main className="px-2 py-2 flex flex-col sm:h-screen">
         <Menu />
         {children}
       </main>

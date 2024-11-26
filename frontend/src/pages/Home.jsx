@@ -15,12 +15,8 @@ const Home = () => {
   const [searOrigin, setSearOrigin] = React.useState("");
   const [searchDestination, setSearchDestination] = React.useState("");
   const data = useSearchRides(searchCustomerId, searOrigin, searchDestination);
-  if (data) {
-    console.log(data);
-  }
 
   function handleOnSubmit(event) {
-    // console.log("customerId: " + customerId + " origin: " + origin + " destination: " + destination);
     event.preventDefault();
     setSearchCustomerId(customerId);
     setSearOrigin(origin);
@@ -66,7 +62,7 @@ const Home = () => {
             <option value="2">2km</option>
             <option value="3">5km</option>
           </select>
-          <button type="submit" className="p-2 bg-blue-500 text-white rounded">
+          <button type="submit" className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-900">
             Submit
           </button>
         </form>
@@ -92,7 +88,12 @@ const Home = () => {
                       <span className="text-yellow-500">★★★★☆</span>
                       <span className="ml-2 text-gray-600">({ride.review.rating})</span>
                     </div>
-                    <div className="text-lg font-bold">R$ 50,00</div>
+                    <div className="text-lg font-bold flex justify-between">
+                      <p>R$ 50,00</p>
+                      <button type="submit" className="bg-gray-800 hover:bg-gray-900 text-white px-4 py-2 rounded">
+                        Confirm
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
