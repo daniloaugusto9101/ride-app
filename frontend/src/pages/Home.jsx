@@ -6,11 +6,11 @@ import { APIProvider, Map } from "@vis.gl/react-google-maps";
 
 const Home = () => {
   return (
-    <section className="flex flex-col md:flex-row gap-y-2 gap-x-4">
+    <section className="flex flex-col md:flex-row gap-y-2 gap-x-4  overflow-hidden">
       <div className="w-full md:w-1/4  p-4">
         <FormComponent />
       </div>
-      <div className="w-full md:w-3/4 flex flex-col md:flex-row py-4 h-96">
+      <div className="w-full md:w-3/4 flex flex-col md:flex-row py-4">
         <div className="w-full md:w-1/2 md:flex-1 p-4  overflow-y-scroll ">
           <h2>Corridas</h2>
           {/* {rides.options.map((movie) => (

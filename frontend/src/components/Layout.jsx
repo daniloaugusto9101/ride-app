@@ -6,7 +6,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <Menu />
-      <main className="max-w-6xl  mx-auto px-2 py-2 ">{children}</main>
+      <main className="mx-auto px-2 py-2 ">{children}</main>
     </>
   );
 };
