@@ -11,9 +11,9 @@ const searchTrips = async (customerId, driverId) => {
 const searchRides = async (customerId, origin, destination) => {
   const recurso = `ride/estimate`;
   const body = {
-    customer_id: "123",
-    origin: "origin",
-    destination: "destination",
+    customer_id: customerId,
+    origin: origin,
+    destination: destination,
   };
   const { data } = await api.post(recurso, body);
   return data;

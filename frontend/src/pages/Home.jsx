@@ -51,16 +51,21 @@ const Home = () => {
             className="p-2 border border-gray-300 rounded"
             required
           />
-          <input
+          <select
             onChange={(event) => {
               setDestination(event.target.value);
             }}
             value={destination}
-            type="text"
-            placeholder="Destino"
             className="p-2 border border-gray-300 rounded"
             required
-          />
+          >
+            <option value="" disabled>
+              Select Distance
+            </option>
+            <option value="1">1km</option>
+            <option value="2">2km</option>
+            <option value="3">5km</option>
+          </select>
           <button type="submit" className="p-2 bg-blue-500 text-white rounded">
             Submit
           </button>

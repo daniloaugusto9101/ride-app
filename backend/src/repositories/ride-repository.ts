@@ -128,11 +128,8 @@ const dataDriver: DriveModel[] = [
 ];
 
 export const rideEstimate = async (ride: RideModel): Promise<RideResponseModel> => {
-  console.log("rideEstimate backend ride=>>", ride);
-  const googleResponse = {
-    km: 5,
-  };
-  const drivers = dataDriver.filter((driver) => driver.value >= googleResponse.km);
+  console.log("rideEstimate =>>", ride.destination);
+  const drivers = dataDriver.filter((driver) => driver.value >= Number(ride.destination));
   return {
     ...dataRideBasicResponse,
     options: drivers,
