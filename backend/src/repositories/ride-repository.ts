@@ -76,7 +76,7 @@ export const rideEstimate = async (ride: RideModel): Promise<RideResponseModel> 
   const drivers = dataDriver.filter((driver) => driver.value >= Number(ride.destination));
   return {
     ...dataRideBasicResponse,
-    options: drivers,
+    options: drivers.length > 0 ? drivers : [dataDriver[0]],
   };
 };
 
