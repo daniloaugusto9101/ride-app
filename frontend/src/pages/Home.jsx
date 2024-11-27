@@ -19,7 +19,7 @@ const Home = () => {
   const [searOrigin, setSearOrigin] = React.useState("");
   const [searchDestination, setSearchDestination] = React.useState("");
   const data = useSearchRides(searchCustomerId, searOrigin, searchDestination);
-  const rideConfirm = useSearchRideConfirm(objRide);
+  const respRideConfirm = useSearchRideConfirm(objRide);
 
   function handleOnSubmit(event) {
     event.preventDefault();
@@ -43,8 +43,13 @@ const Home = () => {
       value: priceDriver,
     };
     setObjRide(rideConfirm);
-    navigate("/trips");
   }
+
+  React.useEffect(() => {
+    if (respRideConfirm.success) {
+      navigate("/trips");
+    }
+  }, [respRideConfirm, navigate]);
   return (
     <section className="flex flex-col md:flex-row gap-y-2 overflow-hidden flex-grow">
       <div className="w-full md:w-1/4  p-4 ">

@@ -81,7 +81,6 @@ export const rideEstimate = async (ride: RideModel): Promise<RideResponseModel> 
 };
 
 export const rideConfirm = async (ride: RideConfirmModel): Promise<RideConfirmResposeModel | []> => {
-  // console.log("Api backend rideConfirm=>>", ride);
   try {
     await prisma.ride.create({
       data: {
@@ -104,8 +103,6 @@ export const rideConfirm = async (ride: RideConfirmModel): Promise<RideConfirmRe
 };
 
 export const rideCustomerId = async (customerId: string, driverId: number | undefined): Promise<TripsModel | []> => {
-  console.log("Api backend customerId=>>", customerId);
-  // console.log("Api backend driverId=>>", driverId);
   try {
     const data = await prisma.ride.findMany({
       where: {
