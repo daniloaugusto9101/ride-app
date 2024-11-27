@@ -1,62 +1,7 @@
+import { PrismaClient } from "@prisma/client";
 import { DriveModel, RideBasicResponseModel, RideConfirmModel, RideConfirmResposeModel, RideModel, RideResponseModel, TripsModel } from "../models/ride-model";
 
-const dataTrips: TripsModel = {
-  customer_id: "12345",
-  rides: [
-    {
-      id: 1,
-      date: new Date("2024-11-23T10:00:00"),
-      origin: "Rua A, 123, São Paulo",
-      destination: "Avenida B, 456, São Paulo",
-      distance: 12.5,
-      duration: "00:30:45",
-      driver: {
-        id: 101,
-        name: "Carlos Silva",
-      },
-      value: 45.75,
-    },
-    {
-      id: 2,
-      date: new Date("2024-11-23T12:15:00"),
-      origin: "Rua X, 789, São Paulo",
-      destination: "Rua Y, 101, São Paulo",
-      distance: 8.2,
-      duration: "00:20:15",
-      driver: {
-        id: 102,
-        name: "Ana Souza",
-      },
-      value: 32.0,
-    },
-    {
-      id: 3,
-      date: new Date("2024-11-23T14:30:00"),
-      origin: "Avenida C, 456, São Paulo",
-      destination: "Rua D, 789, São Paulo",
-      distance: 5.7,
-      duration: "00:15:30",
-      driver: {
-        id: 103,
-        name: "José Pereira",
-      },
-      value: 22.5,
-    },
-    {
-      id: 4,
-      date: new Date("2024-11-23T17:45:00"),
-      origin: "Rua E, 101, São Paulo",
-      destination: "Avenida F, 202, São Paulo",
-      distance: 14.3,
-      duration: "00:35:00",
-      driver: {
-        id: 104,
-        name: "Maria Oliveira",
-      },
-      value: 53.2,
-    },
-  ],
-};
+const prisma = new PrismaClient();
 
 const dataRideBasicResponse: RideBasicResponseModel = {
   origin: {
@@ -135,27 +80,59 @@ export const rideEstimate = async (ride: RideModel): Promise<RideResponseModel> 
   };
 };
 
-export const rideConfirm = async (ride: RideConfirmModel): Promise<RideConfirmResposeModel> => {
-  console.log("Api backend rideConfirm=>>", ride);
-  if (true) {
+export const rideConfirm = async (ride: RideConfirmModel): Promise<RideConfirmResposeModel | []> => {
+  // console.log("Api backend rideConfirm=>>", ride);
+  try {
+    await prisma.ride.create({
+      data: {
+        customerId: ride.customer_id,
+        origin: ride.origin,
+        destination: ride.destination,
+        distance: ride.distance,
+        duration: ride.duration,
+        value: ride.value,
+        driverId: ride.driver.id,
+        driverName: ride.driver.name,
+      },
+    });
     return {
       success: true,
     };
+  } catch (error) {
+    return [];
   }
 };
 
-export const rideCustomerId = async (customerId: String, driverId: number | undefined): Promise<TripsModel | []> => {
-  // console.log("Api backend customerId=>>", customerId);
+export const rideCustomerId = async (customerId: string, driverId: number | undefined): Promise<TripsModel | []> => {
+  console.log("Api backend customerId=>>", customerId);
   // console.log("Api backend driverId=>>", driverId);
-  if (dataTrips.customer_id !== customerId) {
-    // console.log("extrou no if");
-    // console.log(`dataTrips.customer_id: ${dataTrips.customer_id} !== customerId: ${customerId}`);
+  try {
+    const data = await prisma.ride.findMany({
+      where: {
+        customerId,
+        ...(driverId !== undefined && { driverId }),
+      },
+    });
+    console.log(data);
+    return {
+      customer_id: String(customerId),
+      rides: data.map((ride) => ({
+        id: Number(ride.id),
+        date: new Date(),
+        origin: ride.origin,
+        destination: ride.destination,
+        distance: ride.distance,
+        duration: ride.duration,
+        driver: {
+          id: ride.driverId,
+          name: ride.driverName,
+        },
+        value: ride.value,
+      })),
+    };
+    // return rides;
+  } catch (error) {
+    console.error("Error fetching rides:", error);
     return [];
   }
-  let filteredRides = dataTrips.rides.filter((ride) => (driverId !== undefined ? ride.id == driverId : true));
-  // console.log("Api backend filteredRides=>>", filteredRides);
-  return {
-    customer_id: String(customerId),
-    rides: filteredRides,
-  };
 };
