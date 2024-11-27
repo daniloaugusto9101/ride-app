@@ -1,7 +1,7 @@
 // src/pages/Home.js
 import React from "react";
 import FormComponent from "../components/FormComponent";
-import Card from "../components/Card";
+// import Card from "../components/Card";
 import { useNavigate } from "react-router-dom";
 import { APIProvider, Map } from "@vis.gl/react-google-maps";
 import useSearchRides from "../hooks/useSearchRides";
