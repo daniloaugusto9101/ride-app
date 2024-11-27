@@ -17,7 +17,6 @@ export const rideEstimateService = async (ride: RideModel) => {
 };
 
 export const rideConfirmService = async (ride: RideConfirmModel) => {
-  console.log("rideConfirmService", ride);
   try {
     if (Object.keys(ride).length === 0) throw await HttpResponse.BadRequest("INVALID_DATA", "Os dados fornecidos no corpo da requisição são inválidos");
     if (!ride?.customer_id || ride.customer_id.trim() === "") throw await HttpResponse.BadRequest("INVALID_DATA", "Os dados fornecidos no corpo da requisição são inválidos");

@@ -126,7 +126,6 @@ export const rideCustomerId = async (customerId: string, driverId: number | unde
         value: ride.value,
       })),
     };
-    // return rides;
   } catch (error) {
     return [];
   }

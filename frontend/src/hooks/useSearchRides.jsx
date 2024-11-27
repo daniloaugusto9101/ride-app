@@ -3,7 +3,6 @@ import TripsService from "../services/TripsService";
 
 function useSearchRides(customerId, origin, destination) {
   const [searchResults, setSearchResults] = React.useState([]);
-  // console.log("searchCustomerId: " + customerId + " searOrigin: " + origin + " searchDestination: " + destination);
 
   React.useEffect(() => {
     if (!customerId || !origin || !destination) {

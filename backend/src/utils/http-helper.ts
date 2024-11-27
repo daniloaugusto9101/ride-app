@@ -7,25 +7,6 @@ export const ok = async (data: any): Promise<HttpResponse.SuccessResponse> => {
   };
 };
 
-// export const noContent = async (): Promise<HttpResponse> => {
-//   return {
-//     statusCode: 204,
-//     body: null,
-//   };
-// };
-
-// export const Erro404 = async (errorCode: string, errorDescription: string): Promise<HttpResponse.CustomErro> => {
-//   return {
-//     name: "Erro404",
-//     message: "Ocorreu um erro",
-//     statusCode: 404,
-//     body: {
-//       error_code: errorCode,
-//       error_description: errorDescription,
-//     },
-//   };
-// };
-
 export const notDriver = async (errorCode: string, errorDescription: string): Promise<HttpResponse.CustomErro> => {
   return {
     name: "notDriver",
@@ -75,13 +56,3 @@ export const ridesDound = async (errorCode: string, errorDescription: string): P
     },
   };
 };
-
-// export const InternalServerError = async (errorCode: string, errorDescription: string): Promise<HttpResponse.InternalServerErro> => {
-//   return {
-//     statusCode: 500,
-//     body: {
-//       error_code: errorCode,
-//       error_description: errorDescription,
-//     },
-//   };
-// };
