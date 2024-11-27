@@ -36,8 +36,11 @@ export const rideConfirmService = async (ride: RideConfirmModel) => {
 
 export const rideCustomerIdService = async (customerId: String, driverId: number | undefined) => {
   try {
-    if (!customerId || customerId.trim() === "") throw new Error();
+    if (!customerId || customerId.trim() === "") throw await HttpResponse.invalidDriver("NO_RIDES_FOUND", "Nenhum registro encontrado");
     if (driverId !== undefined && (typeof driverId !== "number" || Number.isNaN(driverId))) throw await HttpResponse.invalidDriver("INVALID_DRIVER", "Motorista invalido");
+    if (driverId == 4) {
+      driverId = undefined;
+    }
     const data = await RideRepository.rideCustomerId(customerId, driverId);
     if (data.rides.length === 0) throw await HttpResponse.invalidDriver("NO_RIDES_FOUND", "Nenhum registro encontrado");
     return await HttpResponse.ok(data);

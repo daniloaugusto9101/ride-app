@@ -110,7 +110,6 @@ export const rideCustomerId = async (customerId: string, driverId: number | unde
         ...(driverId !== undefined && { driverId }),
       },
     });
-    console.log(data);
     return {
       customer_id: String(customerId),
       rides: data.map((ride) => ({
@@ -129,7 +128,6 @@ export const rideCustomerId = async (customerId: string, driverId: number | unde
     };
     // return rides;
   } catch (error) {
-    console.error("Error fetching rides:", error);
     return [];
   }
 };
