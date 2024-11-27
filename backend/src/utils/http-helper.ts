@@ -57,6 +57,24 @@ export const BadRequest = async (errorCode: string, errorDescription: string): P
     },
   };
 };
+export const invalidDriver = async (errorCode: string, errorDescription: string): Promise<HttpResponse.NotFound> => {
+  return {
+    statusCode: 400,
+    body: {
+      error_code: errorCode,
+      error_description: errorDescription,
+    },
+  };
+};
+export const ridesDound = async (errorCode: string, errorDescription: string): Promise<HttpResponse.NotFound> => {
+  return {
+    statusCode: 404,
+    body: {
+      error_code: errorCode,
+      error_description: errorDescription,
+    },
+  };
+};
 
 // export const InternalServerError = async (errorCode: string, errorDescription: string): Promise<HttpResponse.InternalServerErro> => {
 //   return {

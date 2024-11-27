@@ -27,6 +27,7 @@ export const rideConfirmService = async (ride: RideConfirmModel) => {
     if (!ride?.driver) throw await HttpResponse.notDriver("DRIVER_NOT_FOUND", "Motorista não encontrado");
     if (!ride?.distance) throw await HttpResponse.notKm("INVALID_DISTANCE", "Quilometragem inválida para o motorista");
     const data = await RideRepository.rideConfirm(ride);
+    if (data.length === 0) throw await HttpResponse.BadRequest("INVALID_DATA", "Os dados fornecidos no corpo da requisição são inválidos");
     return await HttpResponse.ok(data);
   } catch (error) {
     return error;
@@ -36,10 +37,11 @@ export const rideConfirmService = async (ride: RideConfirmModel) => {
 export const rideCustomerIdService = async (customerId: String, driverId: number | undefined) => {
   try {
     if (!customerId || customerId.trim() === "") throw new Error();
-    if (driverId !== undefined && (typeof driverId !== "number" || Number.isNaN(driverId))) throw new Error();
+    if (driverId !== undefined && (typeof driverId !== "number" || Number.isNaN(driverId))) throw await HttpResponse.invalidDriver("INVALID_DRIVER", "Motorista invalido");
     const data = await RideRepository.rideCustomerId(customerId, driverId);
+    if (data.rides.length === 0) throw await HttpResponse.invalidDriver("NO_RIDES_FOUND", "Nenhum registro encontrado");
     return await HttpResponse.ok(data);
   } catch (error) {
-    return await HttpResponse.BadRequest("RIDE_NOT_FOUND", "Ride not found for the given IDs");
+    return error;
   }
 };

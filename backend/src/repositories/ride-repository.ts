@@ -5,15 +5,15 @@ const prisma = new PrismaClient();
 
 const dataRideBasicResponse: RideBasicResponseModel = {
   origin: {
-    latitude: -23.55052, // Exemplo: localização de São Paulo
+    latitude: -23.55052,
     longitude: -46.633308,
   },
   destination: {
-    latitude: -22.906847, // Exemplo: localização do Rio de Janeiro
+    latitude: -22.906847,
     longitude: -43.172896,
   },
-  distance: 429, // Distância em quilômetros entre São Paulo e Rio de Janeiro
-  duration: "6h 30m", // Exemplo de duração estimada
+  distance: 429,
+  duration: "6h 30m",
 
   routeResponse: {
     status: "OK",
