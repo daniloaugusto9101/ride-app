@@ -2,11 +2,13 @@
 import React from "react";
 import FormComponent from "../components/FormComponent";
 import Card from "../components/Card";
+import { useNavigate } from "react-router-dom";
 import { APIProvider, Map } from "@vis.gl/react-google-maps";
 import useSearchRides from "../hooks/useSearchRides";
 import useSearchRideConfirm from "../hooks/useSearchRideConfirm";
 
 const Home = () => {
+  const navigate = useNavigate();
   const [customerId, setCustomerId] = React.useState("");
   const [origin, setOrigin] = React.useState("");
   const [destination, setDestination] = React.useState("");
@@ -41,6 +43,7 @@ const Home = () => {
       value: priceDriver,
     };
     setObjRide(rideConfirm);
+    navigate("/trips");
   }
   return (
     <section className="flex flex-col md:flex-row gap-y-2 overflow-hidden flex-grow">
@@ -82,7 +85,7 @@ const Home = () => {
             <option value="3">5km</option>
           </select>
           <button type="submit" className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-900">
-            Submit
+            See prices
           </button>
         </form>
       </div>
